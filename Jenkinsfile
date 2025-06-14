@@ -11,14 +11,15 @@ pipeline {
         }
         stage('Start Cluster') {
             steps {
-                sh 'docker compose up -d --remove-orphans'
+                sh 'docker compose up -d --remove-orphans || true'
+                sh 'docker compose up -d'
             }
         }
         stage('Verify Cluster') {
             steps {
-                sh 'sleep 10' // Даем время для инициализации
+                sh 'sleep 10'
                 sh 'docker compose ps'
-                sh './test.sh || true' // Игнорируем exit code тестов
+                sh './test.sh || true'
             }
         }
     }
