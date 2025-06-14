@@ -11,7 +11,7 @@ pipeline {
         }
         stage('Start Cluster') {
             steps {
-                sh 'docker compose up -d --remove-orphans || true'
+                //sh 'docker compose up -d --remove-orphans || true'
                 sh 'docker compose up -d'
             }
         }
